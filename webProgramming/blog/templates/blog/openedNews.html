@@ -1,0 +1,18 @@
+{% extends 'blog/base.html' %}
+{%  block content %}
+
+<div id="news">
+<h2 style="font-variant: small-caps; font-size:24px " id="demoFont">{{ news.topic }}</h2>
+<img src={{ news.image.url}}>
+<p id="demoFont">{{ news.content }}</p>
+</div>
+
+<div id="otherNews">
+    <h4 id="demoFont" >OTHER NEWS</h4>
+{%  for News in otherNews %}
+<img src={{ News.image.url }} class="otherNewsimg" width="200"> <br>
+<a id="demoFont" href={% url 'news_detail' pk=News.pk %}>{{ News.topic }}</a>
+<br><br>
+{% endfor %}
+</div>
+{% endblock %}

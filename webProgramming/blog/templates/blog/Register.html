@@ -1,0 +1,12 @@
+{% extends 'blog/base.html' %}
+{% block content %}
+
+    <div style="text-align:center;" class="formX" id="demoFont">
+        <h3 style="font-variant: small-caps">Sign Up</h3>
+        <form method="POST" class="form">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" id="submit">Register</button>
+        </form>
+    </div>
+{% endblock %}

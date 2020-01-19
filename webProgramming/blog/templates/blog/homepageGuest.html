@@ -1,0 +1,73 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+{% block content %}
+
+    <div class="newsHP">
+    <a class="hpA"  style="float: right" href={% url 'news' %}>See all news...</a>
+        <div class="slideshow-container">
+            {% for News in newss|slice:3 %}
+                <div class="mySlides fade">
+                    <img class="newsImg"  src={{ News.image.url }}>
+                    <div class="newsTopic">
+                        <a class="hpA" href="{% url 'news_detail' pk=News.topic %}"><p id="demoFont" style="color: white; text-align: center">{{ News.topic }}</p></a>
+                    </div>
+
+                </div>
+            {% endfor %}
+            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+            <a class="next" onclick="plusSlides(1)">&#10095;</a>
+        </div>
+            <div style="text-align:center">
+            <span class="dot" onclick="currentSlide(1)"></span>
+            <span class="dot" onclick="currentSlide(2)"></span>
+            <span class="dot" onclick="currentSlide(3)"></span>
+        </div>
+        <br>
+    </div>
+<br>
+    <div class="HP">
+        <div class="containerHP"><p id="demoFont">Announcements</p>
+                       {% for post in postA|slice:3 %}
+                <hr/>
+                <a style="color: white" href="{% url 'post_detail' pk=post.pk %}"><p id="demoFont" style="color: white">{{ post.topic }}</p></a>
+            {% endfor %}
+        </div>
+        <div class="containerHP"><p id="demoFont">Complaints</p>
+                        {% for post in postC|slice:4 %}
+                 <hr/>
+                <a style="color: white" href="{% url 'post_detail' pk=post.pk %}"><p id="demoFont" style="color: white">{{ post.topic }}</p></a>
+            {% endfor %}
+        </div>
+        <div class="containerHP"><p id="demoFont">UPCOMING EVENTS</p>
+                        {% for Event in events|slice:4 %}
+<hr/>
+                    <a style="color: white" href="{% url 'event_detail' pk=Event.pk %}"><p id="demoFont" style="color: white">{{ Event.name }}</p></a>
+
+            {% endfor %}
+        </div>
+    <a  style="float: right; color:white" href={% url 'upcomingEvents' %}>See all Upcoming Events</a>
+    </div>
+<div style="float:left">
+        <img class="imgHP" src="static/img/isik.jpg">
+    </div>
+     <div class="links">
+        <a href="https://isikuniversity.mrooms.net"><img class="hpIcons"
+                                                         src="static/img/mrooms.png"></a>
+        <a href="https://e-campus.isikun.edu.tr"><img class="hpIcons"
+                                                      src="static/img/ecampus.png"></a>
+        <a href="https://webmail.isik.edu.tr"><img class="hpIcons"
+                                                   src="static/img/webmail.png"></a>
+        <br>
+        <p class="link"> Mrooms </p>
+        <p class="link"> E-campus </p>
+        <p class="link"> Webmail </p>
+
+    </div>
+    <script src="{% static 'js/js.js' %}"></script>
+    <script>
+        var slideIndex = 1;
+        showSlides(slideIndex);
+    </script>
+{% endblock %}
+</body>
+</html>

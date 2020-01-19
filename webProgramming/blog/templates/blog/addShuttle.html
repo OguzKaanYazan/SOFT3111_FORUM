@@ -1,0 +1,14 @@
+{% extends 'blog/Admin.html' %}
+{% load static %}
+{% block content %}
+<div style="text-align:center;" class="formX">
+
+    <h3 id="demoFont" style="font-size: 24px; font-weight: bold">Add Shuttle</h3>
+    <form method="POST" class="form" enctype="multipart/form-data" id="demoFont">
+      {% csrf_token %}
+      {{ form.as_p }}
+        <button type="submit" id="submit">Add</button>
+  </form>
+
+</div>
+{% endblock %}

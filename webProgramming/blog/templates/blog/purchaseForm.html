@@ -1,0 +1,53 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+   <script src="{% static 'js/js.js' %}"></script>
+{% block content %}
+<div class="page">
+    <div class="purchase" id="product">
+    <img src={{ product.image.url }} id="productimg">
+    </div>
+    <div class="purchase" id="price">
+<h2 align="center" id="demoFont" style="font-size: 24px; color: white">{{ product.price }} TL</h2>
+        <p id="demoFont" style="font-size: 24px; color: white">Size:{{ product.size }}</p>
+        <br><br><br>
+
+    </div>
+    <div class="purchase" id="purchaseForm">
+        <h2 id="demoFont" style="font-weight: bold; font-size: 24px">PURCHASE FORM</h2>
+        <form method="POST" class="form" id="demoFont">
+            <label >Amount</label>
+      {% csrf_token %}
+      {{ form.as_p }}
+
+        <div class="inputs">
+
+ <label >First Name</label>
+<br><br>
+      <input type="text"  class="purchaseForm" required>
+
+            </div>
+        <div class="inputs">
+      <label >Last Name</label>
+<br><br>
+      <input type="text"  class="purchaseForm" required>
+
+            </div>
+         <div class="inputs">
+<label >Phone Number</label>
+<br><br>
+      <input type="text"  class="purchaseForm" required>
+    </div>
+              <div class="inputs">
+        <label >Credit Card Number</label>
+                  <br><br>
+  <input type="text" class="purchaseForm" required>
+
+        </div>
+        <br><br>
+      <button onclick="purchase()" type="submit" id="purchaseB">Purchase</button>
+  </form>
+    </div>
+
+    <a href={% url 'store' %}><button id="back">Back to the Store</button></a>
+</div>
+{% endblock %}

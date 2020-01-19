@@ -1,0 +1,74 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+{% block content %}
+    <h1 id="sHours">Shuttle Hours</h1>
+    <div id="nonfree">
+        <div class="sh" id="shuttleT">
+            <table id="tableShuttle">
+                <tr id="demoFont">
+                    <th>Name</th>
+                    <th>Quota</th>
+                    <th>Hour</th>
+                    {% if user.isAdmin %}
+                        <th></th>
+                    {% endif %}
+                </tr>
+                {% for shuttleHours in kShuttles %}
+                    <tr id="demoFont">
+                        <td>{{ shuttleHours.name }}</td>
+                        <td>{{ shuttleHours.quota }}</td>
+                        <td>{{ shuttleHours.hour }}</td>
+                        {% if user.isAdmin %}
+                            <td>
+                                <a href={% url 'deleteShuttle' pk=shuttleHours.pk %}><button>Delete</button></a>
+                            </td>
+                        {% endif %}
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+
+        <div class="sh" id="shuttleT">
+            <table id="tableShuttle">
+                <tr id="demoFont">
+                    <th>Name</th>
+                    <th>Quota</th>
+                    <th>Hour</th>
+                </tr>
+                {% for shuttleHours in mShuttles %}
+                    <tr id="demoFont">
+                        <td>{{ shuttleHours.name }}</td>
+                        <td>{{ shuttleHours.quota }}</td>
+                        <td>{{ shuttleHours.hour }}</td>
+                        {% if user.isAdmin %}
+                            <td>
+                               <a href={% url 'deleteShuttle' pk=shuttleHours.pk %}><button>Delete</button></a>
+                            </td>
+                        {% endif %}
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+    <div class="free">
+        <table id="tableShuttle">
+            <tr id="demoFont">
+                <th>Name</th>
+                <th>Quota</th>
+                <th>Hour</th>
+            </tr>
+            {% for shuttleHours in fShuttles %}
+                <tr id="demoFont">
+                    <td>{{ shuttleHours.name }}</td>
+                    <td>{{ shuttleHours.quota }}</td>
+                    <td>{{ shuttleHours.hour }}</td>
+                    {% if user.isAdmin %}
+                        <td>
+                            <a href={% url 'deleteShuttle' pk=shuttleHours.pk %}><button>Delete</button></a>
+                        </td>
+                    {% endif %}
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+{% endblock %}

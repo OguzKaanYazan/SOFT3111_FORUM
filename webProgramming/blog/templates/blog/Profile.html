@@ -1,0 +1,38 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+{% block content %}
+    <div class="prof" id="demoFont" style="margin-top: 6.5%;">
+        <h2 class="headerP" >PERSONAL INFORMATIONS</h2>
+        <p>First Name : {{ user.firstname }}</p> <br>
+        <p>Last Name : {{ user.lastname }} </p> <br>
+        <p>E-mail : {{ user.email }}</p> <br>
+        <p>Program : {{ user.program }}</p> <br>
+
+            <a href={% url 'editProfile' %}><button class="profile" id="edit">Edit My Profile</button></a>
+
+    </div>
+    {% if not user.isAdmin %}
+    <div class="prof" id="forumProfile">
+        <div class="lists" id="demoFont">
+            <h3 class="headerP">Created Topics</h3>
+            {% for Post in posts %}
+                <hr/>
+                <a href={% url 'post_detail' pk=Post.pk %}><p>{{ Post.topic }}</p></a>
+            {% endfor %}
+        </div>
+        <div class="lists" id="demoFont">
+            <h3 class="headerP">Your Replies</h3>
+            {% for Reply in replies %}
+                <hr/>
+                <a href={% url 'post_detail' pk=Reply.topic %}><p>{{ Reply.topic }}</p></a>
+            {% endfor %}
+        </div>
+        <div class="lists" id="demoFont">
+            <h3 class="headerP">Purchases</h3>
+            {% for Purchase in purchases %}
+                <p>{{ Purchase.totalPrice }} TL</p>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends 'blog/base.html' %}
+{% block content %}
+    <div class="page">
+        <div class="forum" id="topics">
+            <table id="table">
+                <tr>
+                    <th style="font-variant: small-caps;" id="demoFont">Topic</th>
+                    <th style="font-variant: small-caps;" id="demoFont">Owner</th>
+                    <th style="font-variant: small-caps;" id="demoFont">Type</th>
+                    {% if user.isAdmin %}
+                        <th></th>
+                    {% endif %}
+                </tr>
+                {% for post in posts %}
+                    <tr>
+                        <th id="demoFont"><a href="{% url 'post_detail' pk=post.pk %}">{{ post.topic }}</a></th>
+                        <th id="demoFont">{{ post.username }}</th>
+                        <th id="demoFont">{{ post.type }}</th>
+                        {% if user.isAdmin %}
+                            <th><a href={% url 'deletePost' pk=post.pk %}>
+                                <button>Delete</button>
+                            </a></th>
+                        {% endif %}
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+
+        <div class="forum" id="rules">
+            {% if not user.isAdmin %}
+                <a href={% url 'new_post' %}>
+                    <button class="rules" id="create">Create a Topic</button>
+                </a>
+            {% endif %}
+            <h1 style="font-size: 24px; margin-top: 40%" id="demoFont">RULES</h1>
+            <p id="demoFont"> 1- No spam. <br> 2- Do not post "offensive" posts,links or images. <br>3- Do not cross
+                post questions.
+                <br> 4- Remain respectful of other members at all times. <br> 5- Be descriptive. <br></p>
+        </div>
+    </div>
+{% endblock %}

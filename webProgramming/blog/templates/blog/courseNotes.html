@@ -1,0 +1,38 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+{% block content %}
+    <div class="courseNotes">
+        <table id="tableNotes">
+            <tr id="demoFont">
+                <th class="notesTH">Course</th>
+                <th class="notesTH">Topic</th>
+                {% if user.isAdmin %}
+                    <th class="notesTH"></th>
+                {% endif %}
+            </tr>
+            {% for Notes in notes %}
+                <tr id="demoFont">
+                    <td class="notesTD"><a href={% url 'pdf_views' pk=Notes.pk %}>{{ Notes.lesson }}</a></td>
+                    <td class="notesTD">{{ Notes.topic }}</td>
+                    {% if user.isAdmin %}
+                        <td class="notesTD">
+                            <a href={% url 'deleteNote' pk=Notes.pk %}>
+                                <button>Delete</button>
+                            </a>
+                        </td>
+                    {% endif %}
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+        <div class="pagination">
+    <br>
+        {% for num in notes.paginator.page_range %}
+            {% if notes.number == num %}
+                <strong><a href="?page={{ num }}">{{ num }}</a></strong>
+            {% else %}
+                <a href="?page={{ num }}">{{ num }}</a>
+            {% endif %}
+        {% endfor %}
+    </div>
+{% endblock %}

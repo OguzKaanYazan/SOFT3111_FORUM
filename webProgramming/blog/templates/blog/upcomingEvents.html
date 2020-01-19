@@ -1,0 +1,26 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+{% block content %}
+<div class="tableEvents">
+    <table id="table">
+      <tr style="font-variant: small-caps;" id="demoFont">
+    <th>Event Name</th>
+    <th>Date</th>
+    <th>Place</th>
+    <th>Organizator</th>
+    <th>Event Page</th>
+  </tr>
+        {% for Event in events %}
+
+  <tr>
+    <th>{{ Event.name }}</th>
+    <th>{{Event.date}}</th>
+    <th>{{Event.place}}</th>
+    <th>{{Event.organizator}}</th>
+      <th>    <a  href="{% url 'event_detail' pk=Event.pk %}">Go to Event Page</a></th>
+  </tr>
+        {% endfor %}
+</table>
+</div>
+<img id="campus" src={% static 'img/campus.jpg' %}>
+{% endblock %}

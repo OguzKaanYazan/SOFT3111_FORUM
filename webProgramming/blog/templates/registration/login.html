@@ -1,0 +1,27 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sign In</title>
+</head>
+<body>
+{% block content %}
+<div class = "formX">
+    <h3 id="demoFont" style="font-variant: small-caps; font-size: 24px;">Sign In</h3>
+    <form method="post" action="{% url 'loginpage' %}" class="form" id="demoFont">
+        {% csrf_token %}
+    <label >Username</label>
+        <input type="text" name="username" required="required">
+        <br><br>
+    <label>Password</label>
+     <input type="password" name="password" required="required">
+        <br>
+    <input type="submit" id = "log" value="Login">
+    <input type ="button" id = "reg" formaction="signUp.html" value ="Register"><br>
+    </form>
+</div>
+{% endblock %}
+<script src="JS/signin.js"></script>
+</body>
+</html>

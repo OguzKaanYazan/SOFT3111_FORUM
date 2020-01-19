@@ -1,0 +1,36 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+<div class="header">
+    <a href="default.asp">
+        <a href="{% url 'homepageGuest' %}"><img src={% static 'img/isik.png' %} id="logo"></a>
+    </a>
+    {% if 'username' in request.session %}
+        <a class="button" href="{% url 'logout' %}">Logout</a>
+        <a class="button" href={% url 'profile' %}>Profile</a>
+        <a class="button" href="{% url 'homepageGuest' %}">Home</a>
+    {% else %}
+        <div class="buttons" #id="sign">
+        <li id="demoFont" style="float:right"><a href="{% url 'register' %}">Sign Up</a></li>
+            <li id="demoFont" style="float:right"><a href="{% url 'loginpage' %}">Sign In</a></li>
+        </div>
+    {% endif %}
+
+    <div class="buttons">
+        <li id="demoFont"><a href="{% url 'posts_list' %}">Forum</a></li>
+        <li id="demoFont"><a href={% url 'courseNotes' %}>Course Notes</a></li>
+        <li id="demoFont"><a href={% url 'store' %}>Store</a></li>
+        <li id="demoFont"><a href={% url 'shuttle' %}>Shuttle Hours</a></li>
+    </div>
+</div>
+<a style="color: white" class="socialmedia" href="https://www.instagram.com/isikuniversitesi">Instagram</a>
+<a style="color: white" class="socialmedia" href="https://twitter.com/FMVIsikUniv?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor">Twitter</a>
+<a style="color: white" href="https://www.facebook.com/isikuniversitesi/" class="socialmedia">Facebook</a>
+{% block content %}
+{% endblock %}
+</body>
+</html>

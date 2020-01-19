@@ -1,0 +1,9 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+{%  block content %}
+<div class="eventDetail">
+<h2>{{ Event.name }}</h2>
+<img src={{ Event.image1.url }} class="otherNewsimg" width="200">
+<p>{{ Event.content }}</p>
+</div>
+{% endblock %}

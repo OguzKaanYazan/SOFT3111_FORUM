@@ -1,0 +1,34 @@
+{% extends 'blog/base.html' %}
+{% block content %}
+
+    <div class="topicComment">
+
+        <h2 style="font-size: 20px; font-weight: bold" id="demoFont">{{ post.topic }}</h2>
+        <p style="text-align: left" id="demoFont">{{ post.text }}</p>
+        <p style="text-align: right" id="demoFont">Author : {{ post.username }}</p>
+    </div>
+    <br>
+
+    {% for reply in replies %}
+        <div class="replies">
+            <p style="text-align: left" id="demoFont">{{ reply.text }}</p>
+            <p style="text-align: right" id="demoFont">Author : {{ reply.username.username }}</p>
+        </div>
+    {% endfor %} <br>
+    <div class="pagination">
+        {% for num in replies.paginator.page_range %}
+            {% if replies.number == num %}
+                <strong><a style="color: white" href="?page={{ num }}">{{ num }}</a></strong>
+            {% else %}
+                <a href="?page={{ num }}">{{ num }}</a>
+            {% endif %}
+        {% endfor %}
+    </div>
+    {% if 'username' in request.session %}
+    <form method="POST" class="form" id="replyText">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" id="replyB">Reply</button>
+    </form>
+    {% endif %}
+{% endblock %}

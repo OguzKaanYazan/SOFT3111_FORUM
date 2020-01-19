@@ -1,0 +1,37 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+{% block content %}
+    <div style="text-align:center;" class="editProfile">
+        <form method="post" action="{% url 'editProfile' %}" class="form" id="demoFont">
+            {% csrf_token %}
+            <h3 id="demoFont" style="font-variant: small-caps; font-size: 24px;">Edit Profile</h3>
+            <input type="text" value={{ user.username }} name="uname" readonly>
+            <br><br>
+            <input type="text" value={{ user.firstname }} name="fname" readonly>
+            <br><br>
+            <input type="text" value={{ user.lastname }} name="lname" readonly>
+            <br><br>
+            <input type="text" name="email" placeholder="Email">
+            <br><br>
+            <input type="password" name="psw" placeholder="Password">
+            <br><br>
+            <select id="combobox" name="program">
+                <option value="Computer Engineering">Computer Engineering</option>
+                <option value="Architecture">Architecture</option>
+                <option value="Psychology">Psychology</option>
+                <option value="Electrical Engineering">Electrical Engineering</option>
+                <option value="Industrial Engineering">Industrial Engineering</option>
+                <option value="Civil Engineering">Civil Engineering</option>
+            </select>
+            <br><br>
+            <select id="combobox" name="gender">
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+            </select>
+            <br><br>
+            <input type="submit" id="submit" value="Edit">
+            <a href={% url 'profile' %}><input style="background-color: red" type="button" id="submit" value="Cancel"></a>
+        </form>
+    </div>
+{% endblock %}

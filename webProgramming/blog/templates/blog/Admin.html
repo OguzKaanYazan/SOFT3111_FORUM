@@ -1,0 +1,33 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+<div class="header">
+    <a href="{% url 'adminPanel' %}"><img src={% static 'img/isik.png' %} id="logo"></a>
+       <a class="button" href="{% url 'logout' %}">Logout</a>
+        <a class="button" href={% url 'profile' %}>Profile</a>
+        <a class="button" href="{% url 'homepageGuest' %}">Home</a>
+    <div class="buttons">
+        <li id="demoFont"><a href="{% url 'posts_list' %}">Forum</a></li>
+        <li id="demoFont"><a href={% url 'courseNotes' %}>Course Notes</a></li>
+        <li id="demoFont"><a href={% url 'store' %}>Store</a></li>
+        <li id="demoFont"><a href={% url 'shuttle' %}>Shuttle Hours</a></li>
+    </div>
+    <h1>ADMIN PAGE</h1>
+</div>
+<div id="mySidenav" class="sidenav">
+    <a href="{% url 'addEvent' %}" id="addEvent" class="menu">Add<br>Event</a>
+    <a href={% url 'addShuttle' %} id="editShuttle" class="menu">Add <br>Shuttle</a>
+    <a href="{% url 'addProduct' %}" id="addProduct" class="menu">Add<br>Product</a>
+    <a href="{% url 'addNews' %}" id="addNews" class="menu">Add<br>News</a>
+    <a href="{% url 'addNote' %}" id="addNote" class="menu">Add<br>Note</a>
+</div>
+{% block content %}
+{% endblock %}
+</body>
+</html>
